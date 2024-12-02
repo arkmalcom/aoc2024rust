@@ -20,3 +20,14 @@ pub fn read_input(file_path: &str) -> Result<Vec<Vec<i32>>, io::Error> {
 
     Ok(data)
 }
+
+#[macro_export]
+macro_rules! measure_time {
+    ($func_name:ident) => {{
+        let start = Instant::now();
+        let result = $func_name(); // Call the function
+        let duration = start.elapsed();
+        println!("{} took {:?}", stringify!($func_name), duration);
+        result
+    }};
+}
